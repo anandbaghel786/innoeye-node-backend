@@ -1,0 +1,33 @@
+
+module.exports = (function () {
+  const express = require('express');
+  const router = express.Router();
+  var teacher = require('../controllers/teacher.controller');
+  router.get('/', async function (req, res) {
+    res.status(200)
+      .json({
+        status: 'success',
+        message: 'Welcome to EverestApi!'
+      });
+  });
+  router.post("/login", teacher.teacherLogin);
+  return router;
+})()
+// module.exports = function (app) {
+//   // var cors = require('cors');
+//   // app.use(cors({ origin: 'http://127.0.0.1:5500/' }));
+
+//   console.log("Hiiiiiiiiiiiiiiii")
+//   // todoList Routes
+//   // app.route('/tasks').get(teacher.list_all_tasks)
+//   // app.route('/login').post(teacher.teacherLogin);
+//   app.get('/login', async (req, res) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.send({ data: { name: "Anand" }, status: true });
+//   });
+
+//   // app.route('/tasks/:taskId')
+//   //   .get(teacher.read_a_task)
+//   //   .put(teacher.update_a_task)
+//   //   .delete(teacher.delete_a_task);
+// };
