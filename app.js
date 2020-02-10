@@ -5,6 +5,11 @@ var Sequelize = require('sequelize');
 const conn = require("./db")
 var teacherRoute = require("./api/routes/routes");
 const cors = require("cors");
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 const corsOptions = {
     origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -15,14 +20,14 @@ const corsOptions = {
 app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
 
-app.use("/", (req, res) => {
-    res.statusCode = 200;
-    res.send('Welcome to REST API with Node.js Tutorial!!');
-})
-app.get('/login', (req, res) => {
-    res.statusCode = 200;
-    res.send('Welcome to REST API with Node.js Tutorial!!');
-});
+// app.use("/", (req, res) => {
+//     res.statusCode = 200;
+//     res.send('Welcome to REST API with Node.js Tutorial!!');
+// })
+// app.get('/login', (req, res) => {
+//     res.statusCode = 200;
+//     res.send('Welcome to REST API with Node.js Tutorial!!');
+// });
 app.use("/v1", teacherRoute)
 
 
