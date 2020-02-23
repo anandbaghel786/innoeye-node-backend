@@ -1,17 +1,17 @@
-module.exports = function (sequelize, conn) {
-    const teacher = conn.define("teachers", {
-        teacher_id: { type: sequelize.INTEGER, primaryKey: true },
-        name: sequelize.STRING,
-        age: sequelize.INTEGER,
-        salary: sequelize.FLOAT,
+module.exports = function (sequelize, DataTypes) {
+    const teacher = sequelize.define("teachers", {
+        teacher_id: { type: DataTypes.INTEGER, primaryKey: true },
+        name: DataTypes.STRING,
+        age: DataTypes.INTEGER,
+        salary: DataTypes.FLOAT,
         createdAt: {
-            type: sequelize.DATE(3),
-            defaultValue: sequelize.NOW,
+            type: DataTypes.DATE(3),
+            defaultValue: DataTypes.NOW,
             field: 'createdAt',
         },
         updatedAt: {
-            type: sequelize.DATE(3),
-            defaultValue: sequelize.NOW,
+            type: DataTypes.DATE(3),
+            defaultValue: DataTypes.NOW,
             field: 'updatedAt',
         }
     })
