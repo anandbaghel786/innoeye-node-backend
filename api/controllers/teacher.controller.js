@@ -7,3 +7,10 @@ module.exports.teacherLogin = async function (req, res) {
     res.send({ data: { name: "Anand" } });
     // teacherObj.create()
 }
+
+module.exports.saveCustomer = async function (req, res) {
+    console.log(req.body);
+    // res.header("Access-Control-Allow-Origin", "*");
+    res.send({ data: { name: "Alka" } });
+    // teacherObj.create()
+}

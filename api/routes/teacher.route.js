@@ -11,6 +11,7 @@ module.exports = (function () {
       });
   });
   router.post("/login", teacher.teacherLogin);
+  router.post("/saveCustomer", teacher.saveCustomer);
   return router;
 })()
 // module.exports = function (app) {
