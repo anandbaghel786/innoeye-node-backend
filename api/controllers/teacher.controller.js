@@ -1,6 +1,6 @@
-var teacherObj = require("../models/teacher.model");
+// var teacherObj = require("../models/teacher.model");
 // const Joi = require('joi'); //used for validation
-
+const db = require('../models');
 module.exports.teacherLogin = async function (req, res) {
     console.log(req.body);
     // res.header("Access-Control-Allow-Origin", "*");
@@ -11,6 +11,6 @@ module.exports.teacherLogin = async function (req, res) {
 module.exports.saveCustomer = async function (req, res) {
     console.log(req.body);
     // res.header("Access-Control-Allow-Origin", "*");
-    res.send({ data: { name: "Alka" } });
-    // teacherObj.create()
+    res.send({ data: { name: "Baghel" } });
+    db.teacher.create(req.body)
 }

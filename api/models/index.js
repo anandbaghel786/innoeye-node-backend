@@ -5,6 +5,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const customers = require("./customer.model")
 const order = require("./order.model")
+const user = require("./user.model")
 const fruit = require("./fruit.model")
 const teacher = require("./teacher.model")
 const basename = path.basename(__filename);
@@ -13,24 +14,25 @@ const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
+if (config.development) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(file => {
-    const model = sequelize['import'](path.join(__dirname, file));
-    db[model.name] = model;
-  });
+// fs
+//   .readdirSync(__dirname)
+//   .filter(file => {
+//     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+//   })
+//   .forEach(file => {
+//     const model = sequelize['import'](path.join(__dirname, file));
+//     db[model.name] = model;
+//   });
 
 
 db.customers = customers(sequelize, Sequelize)
+db.user = user.sqlSchema(sequelize, Sequelize)
 db.order = order(sequelize, Sequelize)
 db.teacher = teacher(sequelize, Sequelize)
 db.fruit = fruit(sequelize, Sequelize)
@@ -47,8 +49,9 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 async function createTables() {
 
-  await db.customers.sync();
-  await db.order.sync();
+  // await db.customers.sync();
+  // await db.order.sync();
+  await db.teacher.sync();
   db.order.belongsTo(db.customers, { foreignKey: 'fk_company' });
   console.log('done');
   // sequelize.close();

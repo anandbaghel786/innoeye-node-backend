@@ -1,9 +1,16 @@
 module.exports = function (sequelize, DataTypes) {
-    const teacher = sequelize.define("teachers", {
-        teacher_id: { type: DataTypes.INTEGER, primaryKey: true },
+    return Teacher = sequelize.define("teachers", {
+        teacher_id: {
+            type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
+        },
         name: DataTypes.STRING,
+        gender: DataTypes.STRING,
         age: DataTypes.INTEGER,
+        designation: DataTypes.STRING,
         salary: DataTypes.FLOAT,
+        phone: DataTypes.INTEGER,
+        email: DataTypes.STRING,
+        password: DataTypes.INTEGER,
         createdAt: {
             type: DataTypes.DATE(3),
             defaultValue: DataTypes.NOW,
@@ -15,7 +22,6 @@ module.exports = function (sequelize, DataTypes) {
             field: 'updatedAt',
         }
     })
-    return teacher;
 }
 
 
